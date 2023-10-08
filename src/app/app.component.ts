@@ -33,17 +33,6 @@ export class AppComponent {
     {
       name: 'Fall asleep',
       selected: false
-    }
-  ];
-
-  done = [
-    {
-      name: 'Wash hair',
-      selected: false,
-    },
-    {
-      name: 'Brush teeth',
-      selected: false
     },
     {
       name: 'Go home',
@@ -59,6 +48,19 @@ export class AppComponent {
     }
   ];
 
+  done = [
+    {
+      name: 'Wash hair',
+      selected: false,
+      activity:100
+    },
+    {
+      name: 'Brush teeth',
+      selected: false,      
+      activity:100
+    }
+  ];
+
   drop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -71,12 +73,12 @@ export class AppComponent {
             event.container.data.forEach(function (d) {
               d.selected = false;
             })
-
           }
         });
 
         this.stored = [];
       } else {
+        console.log(event.previousContainer.data[event.previousIndex]);
         transferArrayItem(event.previousContainer.data,
           event.container.data,
           event.previousIndex,
@@ -109,6 +111,19 @@ export class AppComponent {
       item.index = idx;
       this.stored.push(item)
     }
-
+  }
+  onDoubleClick(e: MouseEvent, item: any, data: any) {
+    if (this.stored.indexOf(item) == -1) {
+      item.selected = true;
+      let idx = data.indexOf(item);
+      item.selected = true;
+      item.index = idx;
+      this.stored.push(item)
+    }
+    else{
+      let idx = data.indexOf(item);
+      item.selected = false;
+      this.stored.splice(idx, 1);
+    }
   }
 }

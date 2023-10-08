@@ -1,6 +1,7 @@
+Hold ctrl + click or Double Click an item to multi select
+<hr>
 <div class="example-container">
   <h2>To do</h2>
-  Hold ctrl + click an item to multi select
   <div
     cdkDropList
     #todoList="cdkDropList"
@@ -13,11 +14,11 @@
       class="example-box"
       *ngFor="let item of todo"
       cdkDrag
-
       (click)="onKeyDown($event, item, todo)"
+      (dblclick)="onDoubleClick($event, item, todo)"
       [ngClass]="{'selected':item.selected}"
     >
-      {{item.name}} hakan
+      {{item.name}}
     </div>
   </div>
 </div>
@@ -37,10 +38,10 @@
       class="example-box"
       *ngFor="let item of done"
       cdkDrag
-      (click)="onKeyDown($event, item, done)"
+      (click)="onDoubleClick($event, item, todo)"
       [ngClass]="{'selected':item.selected}"
     >
-      {{item.name}}
+      {{item.name}} | {{item.activity}}
     </div>
   </div>
 </div>
