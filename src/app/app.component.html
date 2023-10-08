@@ -15,14 +15,9 @@
       cdkDrag
 
       (click)="onKeyDown($event, item, todo)"
-      [ngClass]="{'selected':item.selected, 'cdk-drag-placeholder': item.isMultidragging}"
+      [ngClass]="{'selected':item.selected}"
     >
       {{item.name}} hakan
-      <span
-        *cdkDragPreview
-        [ngClass]="{'multi':item.isMultidragging,'single':!item.isMultidragging}"
-        ><div [hidden]="item.isMultidragging">{{item.name}}</div></span
-      >
     </div>
   </div>
 </div>
@@ -43,17 +38,17 @@
       *ngFor="let item of done"
       cdkDrag
       (click)="onKeyDown($event, item, done)"
-      [ngClass]="{'selected':item.selected, 'cdk-drag-placeholder': item.isMultidragging}"
+      [ngClass]="{'selected':item.selected}"
     >
       {{item.name}}
     </div>
   </div>
 </div>
 
-<!-- Copyright 2018 Google Inc. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license -->
+<hr>
+<pre>{{stored | json}}</pre>
+<hr>
+<pre>{{todo | json }}</pre>
+<hr>
+<pre>{{done | json }}</pre>
 
-{{todo | json }}
-<br /><br />
-{{done | json }}
